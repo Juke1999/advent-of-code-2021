@@ -15,25 +15,27 @@ public class SonarSweepEasy {
     int previous = 0;
     int higherValues = 0;
 
-    try (BufferedReader br
-        = new BufferedReader(new InputStreamReader(inputStream))) {
-      String line;
+    if (inputStream != null) {
+      try (BufferedReader br
+          = new BufferedReader(new InputStreamReader(inputStream))) {
+        String line;
 
-      while ((line = br.readLine()) != null) {
-        int current = Integer.parseInt(line);
+        while ((line = br.readLine()) != null) {
+          int current = Integer.parseInt(line);
 
-        if (previous == 0) {
+          if (previous == 0) {
+            previous = current;
+            continue;
+          }
+
+          if (previous < current) {
+            higherValues++;
+          }
+
           previous = current;
-          continue;
         }
-
-        if (previous < current) {
-          higherValues++;
-        }
-
-        previous = current;
+        System.out.println("Higher values: " + higherValues);
       }
-      System.out.println(higherValues);
     }
   }
 }

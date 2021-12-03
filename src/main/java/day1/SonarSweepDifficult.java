@@ -20,39 +20,40 @@ public class SonarSweepDifficult {
     int previous = 0;
     int higherValues = 0;
 
-    try (BufferedReader br
-        = new BufferedReader(new InputStreamReader(inputStream))) {
-      String line;
-      List<Integer> intList = new ArrayList<>();
+    if (inputStream != null) {
+      try (BufferedReader br
+          = new BufferedReader(new InputStreamReader(inputStream))) {
+        String line;
+        List<Integer> intList = new ArrayList<>();
 
-      while ((line = br.readLine()) != null) {
-        intList.add(Integer.parseInt(line));
-      }
-
-      while (endIndex < intList.size()) {
-        int current = 0;
-
-        for (int i = startIndex; i <= endIndex; i++) {
-          current += intList.get(i);
+        while ((line = br.readLine()) != null) {
+          intList.add(Integer.parseInt(line));
         }
 
-        if (previous == 0) {
+        while (endIndex < intList.size()) {
+          int current = 0;
+
+          for (int i = startIndex; i <= endIndex; i++) {
+            current += intList.get(i);
+          }
+
+          if (previous == 0) {
+            previous = current;
+            continue;
+          }
+
+          if (previous < current) {
+            higherValues++;
+          }
+
           previous = current;
-          continue;
+          startIndex++;
+          endIndex++;
         }
 
-        if (previous < current) {
-          higherValues++;
-        }
-
-        previous = current;
-        startIndex++;
-        endIndex++;
+        System.out.println("Higher values: " + higherValues);
       }
-
-      System.out.println(higherValues);
     }
-
   }
 
 }

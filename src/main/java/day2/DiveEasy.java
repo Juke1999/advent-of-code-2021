@@ -17,24 +17,26 @@ public class DiveEasy {
     int depth = 0;
     int horizontal = 0;
 
-    try (BufferedReader br
-        = new BufferedReader(new InputStreamReader(inputStream))) {
-      String line;
+    if (inputStream != null) {
+      try (BufferedReader br
+          = new BufferedReader(new InputStreamReader(inputStream))) {
+        String line;
 
-      while ((line = br.readLine()) != null) {
-        String[] lineParts = line.split(" ");
+        while ((line = br.readLine()) != null) {
+          String[] lineParts = line.split(" ");
 
-        switch (lineParts[0]) {
-          case ("forward") -> horizontal += Integer.parseInt(lineParts[1]);
-          case ("down") -> depth += Integer.parseInt(lineParts[1]);
-          case ("up") -> depth -= Integer.parseInt(lineParts[1]);
+          switch (lineParts[0]) {
+            case ("forward") -> horizontal += Integer.parseInt(lineParts[1]);
+            case ("down") -> depth += Integer.parseInt(lineParts[1]);
+            case ("up") -> depth -= Integer.parseInt(lineParts[1]);
+          }
         }
+
+        System.out.println("Depth: " + depth);
+        System.out.println("Horizontal: " + horizontal);
+        System.out.println("Multiplication: " + (depth * horizontal));
+
       }
-
-      System.out.println("Depth: " + depth);
-      System.out.println("Horizontal: " + horizontal);
-      System.out.println("Multiplication: " + (depth * horizontal));
-
     }
   }
 
