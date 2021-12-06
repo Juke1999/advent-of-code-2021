@@ -1,6 +1,7 @@
 package day3;
 
 import day1.SonarSweepEasy;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
 import util.EasyTask;
 
 @EasyTask
@@ -21,14 +23,11 @@ public class BinaryDiagnosticEasy {
     int maxIndex = 1;
 
     StringBuilder gammaRate = new StringBuilder();
-
     List<String> values = new ArrayList<>();
 
-    InputStream inputStream = SonarSweepEasy.class.getClassLoader()
-        .getResourceAsStream("day3/input.txt");
+    InputStream inputStream = SonarSweepEasy.class.getClassLoader().getResourceAsStream("day3/input.txt");
 
-    try (BufferedReader br
-        = new BufferedReader(new InputStreamReader(inputStream))) {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 
       String line;
 
@@ -44,14 +43,7 @@ public class BinaryDiagnosticEasy {
           gammaRateLoop.append(s.charAt(currentIndex));
         }
 
-        gammaRate.append(gammaRateLoop.chars()
-            .mapToObj(x -> (char) x)
-            .collect(Collectors.groupingBy(x -> x, Collectors.counting()))
-            .entrySet().stream()
-            .max(Entry.comparingByValue())
-            .get()
-            .getKey());
-
+        gammaRate.append(getMostBit(gammaRateLoop.toString()));
         currentIndex++;
       }
     }
@@ -60,8 +52,7 @@ public class BinaryDiagnosticEasy {
     int epsilonRateDecimal = Integer.parseInt(swapBinary(String.valueOf(gammaRate)), 2);
 
     System.out.println("Gamma Rate: " + gammaRate + " --> " + gammaRateDecimal);
-    System.out.println(
-        "Epsilon Rate: " + swapBinary(gammaRate.toString()) + " --> " + epsilonRateDecimal);
+    System.out.println("Epsilon Rate: " + swapBinary(gammaRate.toString()) + " --> " + epsilonRateDecimal);
     System.out.println("Fuel Usage: " + gammaRateDecimal * epsilonRateDecimal);
 
     long finish = System.currentTimeMillis();
@@ -69,11 +60,26 @@ public class BinaryDiagnosticEasy {
     System.out.println("\nTime spent: " + (finish - start) + "ms");
   }
 
+  private static char getMostBit(String stringBits) {
+    int zeroes = 0;
+    int ones = 0;
+
+    for (char c : stringBits.toCharArray()) {
+      int i = c == '0' ? zeroes++ : ones++;
+    }
+
+    if (zeroes > ones) {
+      return '0';
+    }
+    return '1';
+
+  }
+
   private static String swapBinary(String binaryString) {
     return binaryString.replace("0", "-")
-        .replace("1", "x")
-        .replace("-", "1")
-        .replace("x", "0");
+            .replace("1", "x")
+            .replace("-", "1")
+            .replace("x", "0");
   }
 
 }

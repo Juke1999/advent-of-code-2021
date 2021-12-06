@@ -1,6 +1,7 @@
 package day3;
 
 import day1.SonarSweepEasy;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
 import util.DifficultTask;
 
 @DifficultTask
@@ -27,11 +29,9 @@ public class BinaryDiagnosticDifficult {
     List<String> oxygen;
     List<String> co2Scrubber;
 
-    InputStream inputStream = SonarSweepEasy.class.getClassLoader()
-        .getResourceAsStream("day3/input.txt");
+    InputStream inputStream = SonarSweepEasy.class.getClassLoader().getResourceAsStream("day3/input.txt");
 
-    try (BufferedReader br
-        = new BufferedReader(new InputStreamReader(inputStream))) {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 
       String line;
 
@@ -62,14 +62,14 @@ public class BinaryDiagnosticDifficult {
 
         if (oxygen.size() != 1) {
           oxygen = oxygen.stream()
-              .filter(s -> s.charAt(finalCurrentIndex) == mostCommonBit)
-              .collect(Collectors.toList());
+                  .filter(s -> s.charAt(finalCurrentIndex) == mostCommonBit)
+                  .collect(Collectors.toList());
         }
 
         if (co2Scrubber.size() != 1) {
           co2Scrubber = co2Scrubber.stream()
-              .filter(s -> s.charAt(finalCurrentIndex) == leastCommonBit)
-              .collect(Collectors.toList());
+                  .filter(s -> s.charAt(finalCurrentIndex) == leastCommonBit)
+                  .collect(Collectors.toList());
         }
 
         currentIndex++;
@@ -79,8 +79,7 @@ public class BinaryDiagnosticDifficult {
       co2ScrubberRating = Integer.parseInt(co2Scrubber.get(0), 2);
     }
 
-    System.out.println(
-        "Oxygen Generator Rating: " + oxygen.get(0) + " --> " + oxygenGeneratorRating);
+    System.out.println("Oxygen Generator Rating: " + oxygen.get(0) + " --> " + oxygenGeneratorRating);
     System.out.println("CO2 Scrubber Rating: " + co2Scrubber.get(0) + " --> " + co2ScrubberRating);
     System.out.println("Life Support Rating: " + (oxygenGeneratorRating * co2ScrubberRating));
 
@@ -97,7 +96,7 @@ public class BinaryDiagnosticDifficult {
       int i = c == '0' ? zeroes++ : ones++;
     }
 
-    if(zeroes > ones) {
+    if (zeroes > ones) {
       return '0';
     }
     return '1';
@@ -112,7 +111,7 @@ public class BinaryDiagnosticDifficult {
       int i = c == '0' ? zeroes++ : ones++;
     }
 
-    if(ones < zeroes) {
+    if (ones < zeroes) {
       return '1';
     }
     return '0';

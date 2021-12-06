@@ -1,10 +1,12 @@
 package day2;
 
 import day1.SonarSweepEasy;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import util.EasyTask;
 
 @EasyTask
@@ -13,15 +15,13 @@ public class DiveEasy {
   public static void result() throws IOException {
     long start = System.currentTimeMillis();
 
-    InputStream inputStream = SonarSweepEasy.class.getClassLoader()
-        .getResourceAsStream("day2/input.txt");
+    InputStream inputStream = SonarSweepEasy.class.getClassLoader().getResourceAsStream("day2/input.txt");
 
     int depth = 0;
     int horizontal = 0;
 
     if (inputStream != null) {
-      try (BufferedReader br
-          = new BufferedReader(new InputStreamReader(inputStream))) {
+      try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
         String line;
 
         while ((line = br.readLine()) != null) {

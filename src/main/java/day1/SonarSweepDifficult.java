@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
 import util.DifficultTask;
 
 @DifficultTask
@@ -13,8 +14,7 @@ public class SonarSweepDifficult {
   public static void result() throws Exception {
     long start = System.currentTimeMillis();
 
-    InputStream inputStream = SonarSweepDifficult.class.getClassLoader()
-        .getResourceAsStream("day1/input.txt");
+    InputStream inputStream = SonarSweepDifficult.class.getClassLoader().getResourceAsStream("day1/input.txt");
 
     int startIndex = 0;
     int endIndex = 2;
@@ -23,8 +23,7 @@ public class SonarSweepDifficult {
     int higherValues = 0;
 
     if (inputStream != null) {
-      try (BufferedReader br
-          = new BufferedReader(new InputStreamReader(inputStream))) {
+      try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
         String line;
         List<Integer> intList = new ArrayList<>();
 

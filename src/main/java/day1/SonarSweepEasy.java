@@ -3,6 +3,7 @@ package day1;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import util.EasyTask;
 
 @EasyTask
@@ -11,15 +12,13 @@ public class SonarSweepEasy {
   public static void result() throws Exception {
     long start = System.currentTimeMillis();
 
-    InputStream inputStream = SonarSweepEasy.class.getClassLoader()
-        .getResourceAsStream("day1/input.txt");
+    InputStream inputStream = SonarSweepEasy.class.getClassLoader().getResourceAsStream("day1/input.txt");
 
     int previous = 0;
     int higherValues = 0;
 
     if (inputStream != null) {
-      try (BufferedReader br
-          = new BufferedReader(new InputStreamReader(inputStream))) {
+      try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
         String line;
 
         while ((line = br.readLine()) != null) {
