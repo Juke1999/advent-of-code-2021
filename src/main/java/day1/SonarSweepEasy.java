@@ -9,6 +9,8 @@ import util.EasyTask;
 public class SonarSweepEasy {
 
   public static void result() throws Exception {
+    long start = System.currentTimeMillis();
+
     InputStream inputStream = SonarSweepEasy.class.getClassLoader()
         .getResourceAsStream("day1/input.txt");
 
@@ -35,6 +37,10 @@ public class SonarSweepEasy {
           previous = current;
         }
         System.out.println("Higher values: " + higherValues);
+
+        long finish = System.currentTimeMillis();
+
+        System.out.println("\nTime spent: " + (finish - start) + "ms");
       }
     }
   }

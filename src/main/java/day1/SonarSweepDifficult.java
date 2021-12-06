@@ -11,8 +11,10 @@ import util.DifficultTask;
 public class SonarSweepDifficult {
 
   public static void result() throws Exception {
+    long start = System.currentTimeMillis();
+
     InputStream inputStream = SonarSweepDifficult.class.getClassLoader()
-        .getResourceAsStream("day1/input2.txt");
+        .getResourceAsStream("day1/input.txt");
 
     int startIndex = 0;
     int endIndex = 2;
@@ -52,6 +54,10 @@ public class SonarSweepDifficult {
         }
 
         System.out.println("Higher values: " + higherValues);
+
+        long finish = System.currentTimeMillis();
+
+        System.out.println("\nTime spent: " + (finish - start) + "ms");
       }
     }
   }

@@ -11,8 +11,9 @@ public class AdventOfCodeRunner {
 
     Set<Class> classes = new LinkedHashSet<>();
 
-    for (int i = 1; i < 4; i++) {
-      classes.addAll(findAllClassesUsingClassLoader("day" + i));
+    int i = 1;
+    while (isPackagePresent("day" + i)) {
+      classes.addAll(findAllClassesUsingClassLoader("day" + i++));
     }
 
     for (Class clazz : classes) {
@@ -20,6 +21,19 @@ public class AdventOfCodeRunner {
       clazz.getDeclaredMethods()[0].invoke(null);
       System.out.println();
     }
+  }
+
+  public static boolean isPackagePresent(String packageName) {
+    InputStream stream = ClassLoader.getSystemClassLoader()
+        .getResourceAsStream(packageName.replaceAll("[.]", "/"));
+
+    if (stream == null) {
+      return false;
+    }
+
+    BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+
+    return reader.lines().findAny().isPresent();
   }
 
   public static Set<Class> findAllClassesUsingClassLoader(String packageName) {

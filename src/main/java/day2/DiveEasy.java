@@ -11,6 +11,8 @@ import util.EasyTask;
 public class DiveEasy {
 
   public static void result() throws IOException {
+    long start = System.currentTimeMillis();
+
     InputStream inputStream = SonarSweepEasy.class.getClassLoader()
         .getResourceAsStream("day2/input.txt");
 
@@ -36,6 +38,9 @@ public class DiveEasy {
         System.out.println("Horizontal: " + horizontal);
         System.out.println("Multiplication: " + (depth * horizontal));
 
+        long finish = System.currentTimeMillis();
+
+        System.out.println("\nTime spent: " + (finish - start) + "ms");
       }
     }
   }

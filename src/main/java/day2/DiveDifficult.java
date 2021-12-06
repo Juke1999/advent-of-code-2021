@@ -11,8 +11,10 @@ import util.DifficultTask;
 public class DiveDifficult {
 
   public static void result() throws IOException {
+    long start = System.currentTimeMillis();
+
     InputStream inputStream = SonarSweepEasy.class.getClassLoader()
-        .getResourceAsStream("day2/input2.txt");
+        .getResourceAsStream("day2/input.txt");
 
     int depth = 0;
     int horizontal = 0;
@@ -39,6 +41,10 @@ public class DiveDifficult {
         System.out.println("Horizontal: " + horizontal);
         System.out.println("Depth: " + depth);
         System.out.println("Calculation: " + (horizontal * depth));
+
+        long finish = System.currentTimeMillis();
+
+        System.out.println("\nTime spent: " + (finish - start) + "ms");
       }
     }
   }
