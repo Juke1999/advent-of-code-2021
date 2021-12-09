@@ -1,6 +1,8 @@
 package day3;
 
 import day1.SonarSweepEasy;
+import util.EasyTask;
+import util.RunnableTask;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,12 +10,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
-
-import util.EasyTask;
 
 @EasyTask
+@RunnableTask
 public class BinaryDiagnosticEasy {
 
   public static void result() throws IOException {
@@ -55,9 +54,9 @@ public class BinaryDiagnosticEasy {
     System.out.println("Epsilon Rate: " + swapBinary(gammaRate.toString()) + " --> " + epsilonRateDecimal);
     System.out.println("Fuel Usage: " + gammaRateDecimal * epsilonRateDecimal);
 
-    long finish = System.currentTimeMillis();
+    long end = System.currentTimeMillis();
 
-    System.out.println("\nTime spent: " + (finish - start) + "ms");
+    System.out.println("\nTime spent: " + (end - start) + "ms");
   }
 
   private static char getMostBit(String stringBits) {

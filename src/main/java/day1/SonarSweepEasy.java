@@ -1,12 +1,14 @@
 package day1;
 
+import util.EasyTask;
+import util.RunnableTask;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import util.EasyTask;
-
 @EasyTask
+@RunnableTask
 public class SonarSweepEasy {
 
   public static void result() throws Exception {
@@ -37,9 +39,9 @@ public class SonarSweepEasy {
         }
         System.out.println("Higher values: " + higherValues);
 
-        long finish = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
 
-        System.out.println("\nTime spent: " + (finish - start) + "ms");
+        System.out.println("\nTime spent: " + (end - start) + "ms");
       }
     }
   }

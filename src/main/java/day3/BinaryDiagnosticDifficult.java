@@ -1,6 +1,8 @@
 package day3;
 
 import day1.SonarSweepEasy;
+import util.DifficultTask;
+import util.RunnableTask;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,12 +10,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import util.DifficultTask;
-
 @DifficultTask
+@RunnableTask
 public class BinaryDiagnosticDifficult {
 
   public static void result() throws IOException {
@@ -83,9 +83,9 @@ public class BinaryDiagnosticDifficult {
     System.out.println("CO2 Scrubber Rating: " + co2Scrubber.get(0) + " --> " + co2ScrubberRating);
     System.out.println("Life Support Rating: " + (oxygenGeneratorRating * co2ScrubberRating));
 
-    long finish = System.currentTimeMillis();
+    long end = System.currentTimeMillis();
 
-    System.out.println("\nTime spent: " + (finish - start) + "ms");
+    System.out.println("\nTime spent: " + (end - start) + "ms");
   }
 
   private static char getMostBit(String stringBits) {

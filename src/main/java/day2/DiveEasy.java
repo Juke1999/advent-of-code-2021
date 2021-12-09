@@ -1,15 +1,16 @@
 package day2;
 
 import day1.SonarSweepEasy;
+import util.EasyTask;
+import util.RunnableTask;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import util.EasyTask;
-
 @EasyTask
+@RunnableTask
 public class DiveEasy {
 
   public static void result() throws IOException {
@@ -38,9 +39,9 @@ public class DiveEasy {
         System.out.println("Horizontal: " + horizontal);
         System.out.println("Multiplication: " + (depth * horizontal));
 
-        long finish = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
 
-        System.out.println("\nTime spent: " + (finish - start) + "ms");
+        System.out.println("\nTime spent: " + (end - start) + "ms");
       }
     }
   }
