@@ -1,13 +1,12 @@
 package day3;
 
-import day1.SonarSweepEasy;
 import util.EasyTask;
 import util.RunnableTask;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,13 +23,13 @@ public class BinaryDiagnosticEasy {
     StringBuilder gammaRate = new StringBuilder();
     List<String> values = new ArrayList<>();
 
-    InputStream inputStream = SonarSweepEasy.class.getClassLoader().getResourceAsStream("day3/input.txt");
+    File file = new File("src/main/resources/day3/input.txt");
 
-    try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 
       String line;
 
-      while ((line = br.readLine()) != null) {
+      while ((line = reader.readLine()) != null) {
         maxIndex = line.length();
         values.add(line);
       }
