@@ -3,24 +3,24 @@ package day4.entity;
 import java.util.HashMap;
 
 public class Board {
-  State state = State.unsolved;
+  State state = State.UNSOLVED;
   int stateCode = 0;
   int winsOnValue = 0;
-  Boolean[] data;
-  HashMap<Integer, Integer> indexOf = new HashMap<>();
+  Boolean[] winnerData;
+  HashMap<Integer, Integer> bingoBoardIndices = new HashMap<>();
 
   public Board(int[] data) {
-    this.data = new Boolean[data.length];
-    for (int i = 0; i < data.length; i++) indexOf.put(data[i], i);
+    this.winnerData = new Boolean[data.length];
+    for (int i = 0; i < data.length; i++) bingoBoardIndices.put(data[i], i);
   }
 
   public int winsAt(int[] draws) {
     for (int i = 0; i < draws.length; i++) {
       try {
-        int idx = indexOf.get(draws[i]);
-        data[idx] = true;
-        if ((state = checkWin(idx)) != State.unsolved) {
-          stateCode = (i * 1000) + (idx + (state == State.columnWin ? 25 : 0));
+        int idx = bingoBoardIndices.get(draws[i]);
+        winnerData[idx] = true;
+        if ((state = checkWin(idx)) != State.UNSOLVED) {
+          stateCode = (i * 1000) + (idx + (state == State.COLUMN_WIN ? 25 : 0));
           winsOnValue = draws[i];
           return stateCode;
         }
@@ -31,29 +31,29 @@ public class Board {
   }
 
   public State checkWin(int at) {
-    int c = 0;
-    int row = at - (at % 5);
+    int checkedNumbersInARow = 0;
+    int currentRow = at - (at % 5);
     try {
-      while (c != 5 && data[row++]) {
-        c++;
+      while (checkedNumbersInARow != 5 && winnerData[currentRow++]) {
+        checkedNumbersInARow++;
       }
     } catch (Exception ignored) {
     }
-    if (c == 5) return State.rowWin;
-    c = 0;
-    int col = at % 5;
-    while (c != 5 && data[col]) {
-      col += 5;
-      c++;
+    if (checkedNumbersInARow == 5) return State.ROW_WIN;
+    checkedNumbersInARow = 0;
+    int currentColumn = at % 5;
+    while (checkedNumbersInARow != 5 && winnerData[currentColumn]) {
+      currentColumn += 5;
+      checkedNumbersInARow++;
     }
-    return (c == 5) ? State.columnWin : State.unsolved;
+    return (checkedNumbersInARow == 5) ? State.COLUMN_WIN : State.UNSOLVED;
   }
 
   public int getScore() {
-    if (state == State.unsolved) return 0;
+    if (state == State.UNSOLVED) return 0;
     int score = 0;
-    for (int key : indexOf.keySet()) {
-      if (data[indexOf.get(key)] == null) {
+    for (int key : bingoBoardIndices.keySet()) {
+      if (winnerData[bingoBoardIndices.get(key)] == null) {
         score += key;
       }
     }
@@ -62,10 +62,10 @@ public class Board {
 
   @Override
   public String toString() {
-    return indexOf.toString();
+    return bingoBoardIndices.toString();
   }
 
   enum State {
-    unsolved, rowWin, columnWin
+    UNSOLVED, ROW_WIN, COLUMN_WIN
   }
 }
