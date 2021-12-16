@@ -13,7 +13,7 @@ import java.util.Collections;
 @EasyTask
 @RunnableTask
 public class GiantSquidEasy {
-  public static void result() throws IOException {
+  public static void result() {
     long start = System.currentTimeMillis();
 
     File file = new File("src/main/resources/day4/input.txt");

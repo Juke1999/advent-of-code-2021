@@ -1,5 +1,6 @@
 package day5;
 
+import util.DifficultTask;
 import util.EasyTask;
 import util.RunnableTask;
 
@@ -10,9 +11,9 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@EasyTask
+@DifficultTask
 @RunnableTask
-public class HydrothermalVentureEasy {
+public class HydrothermalVentureDifficult {
   public static void result() throws IOException {
     long start = System.currentTimeMillis();
 
@@ -55,6 +56,19 @@ public class HydrothermalVentureEasy {
                 dangerZones++;
               }
             }
+          } else {
+            if (++map[coord[0]][coord[1]] == 2) {
+              dangerZones++;
+            }
+            int[] incs = new int[] {coord[0] > coord[2] ? -1 : + 1, coord[1] > coord[3] ? -1 : + 1};
+            while (coord[0] != coord[2])
+            {
+              coord[0] += incs[0];
+              coord[1] += incs[1];
+              if (++map[coord[0]][coord[1]] == 2) {
+                dangerZones++;
+              }
+            }
           }
         }
       }
@@ -65,5 +79,4 @@ public class HydrothermalVentureEasy {
       System.out.println("\nTime spent: " + (end - start) + "ms");
     }
   }
-
 }
